@@ -5,7 +5,8 @@
 static void cb_ok (GtkWidget * p_wid, gpointer p_data)
 {
    GtkWidget   * p_dialog  = NULL;
-   const char  * p_text    = p_data;
+   GtkEntryBuffer * p_buf = p_data;
+   const char * p_text = gtk_entry_buffer_get_text(p_buf);
  
  
    if (p_text != NULL)
@@ -15,6 +16,7 @@ static void cb_ok (GtkWidget * p_wid, gpointer p_data)
          GTK_DIALOG_MODAL,
          GTK_MESSAGE_INFO,
          GTK_BUTTONS_OK,
+         "%s",
          p_text
       );
  
@@ -62,7 +64,7 @@ int main (int argc, char ** argv)
          g_signal_connect (
             gtk_builder_get_object (p_builder, "button1"),
             "clicked", G_CALLBACK (cb_ok),
-            (gpointer) gtk_entry_get_text (
+            (gpointer) gtk_entry_get_buffer (
                GTK_ENTRY (gtk_builder_get_object (p_builder, "entry1"))
             )
          );
