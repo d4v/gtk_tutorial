@@ -16,6 +16,7 @@
           <object class="GtkEntry" id="entry1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="buffer">entrybuffer1</property>
             <property name="invisible_char">●</property>
           </object>
           <packing>
@@ -38,6 +39,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_action_appearance">False</property>
+                <signal name="clicked" handler="cb_ok" object="entrybuffer1" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -53,6 +55,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_action_appearance">False</property>
+                <signal name="clicked" handler="cb_quit" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>

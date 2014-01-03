@@ -2,7 +2,7 @@
 #include <gtk/gtk.h>
  
  
-static void cb_ok (GtkWidget * p_wid, gpointer p_data)
+void cb_ok (GtkWidget * p_wid, gpointer p_data)
 {
    GtkWidget   * p_dialog  = NULL;
    GtkEntryBuffer * p_buf = p_data;
@@ -26,8 +26,7 @@ static void cb_ok (GtkWidget * p_wid, gpointer p_data)
    }
 }
  
- 
-static void cb_quit (GtkWidget * p_wid, gpointer p_data)
+void cb_quit (GtkWidget * p_wid, gpointer p_data)
 {
    gtk_main_quit ();
 }
@@ -58,23 +57,8 @@ int main (int argc, char ** argv)
             p_builder, "window1"
          );
  
- 
-         /* 2.- */
-         /* Signal du bouton Ok */
-         g_signal_connect (
-            gtk_builder_get_object (p_builder, "button1"),
-            "clicked", G_CALLBACK (cb_ok),
-            (gpointer) gtk_entry_get_buffer (
-               GTK_ENTRY (gtk_builder_get_object (p_builder, "entry1"))
-            )
-         );
- 
-         /* Signal du bouton Annuler */
-         g_signal_connect (
-            gtk_builder_get_object (p_builder, "button2"),
-            "clicked", G_CALLBACK (cb_quit), NULL
-         );
- 
+         /* 2.- Connection des signaux par le builder */
+         gtk_builder_connect_signals(p_builder,NULL);
  
          gtk_widget_show_all (p_win);
          gtk_main ();

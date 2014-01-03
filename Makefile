@@ -1,10 +1,10 @@
 CC=gcc
 
-CPPFLAGS=`pkg-config --cflags gtk+-x11-3.0`
+CPPFLAGS=`pkg-config --cflags gtk+-x11-3.0 gmodule-2.0`
 
 CFLAGS=-g -Wall
 
-LDLIBS=`pkg-config --libs gtk+-x11-3.0`
+LDLIBS=`pkg-config --libs gtk+-x11-3.0 gmodule-2.0`
 
 main:
 
